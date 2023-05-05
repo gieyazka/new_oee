@@ -1,0 +1,12 @@
+version: "3.8"
+services: 
+  frontend:
+    build: .
+    image: oee_monitor
+    environment:
+      - TZ=Asia/Bangkok
+    ports:
+      - 3009:3000
+    restart: unless-stopped
+
+    
