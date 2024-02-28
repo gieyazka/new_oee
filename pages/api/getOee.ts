@@ -55,7 +55,7 @@ export default async function handler(
             availability: getOee.data.results[0].series !== undefined ? !getOee.data.results[0].series[0].values[0][2] ? "N/A" : Math.round(getOee.data.results[0].series[0].values[0][2] * 100) : '-',
             performance: getOee.data.results[0].series !== undefined ? !getOee.data.results[0].series[0].values[0][3] ? "N/A" : Math.round(getOee.data.results[0].series[0].values[0][3] * 100) : '-',
 
-            test: getOee.data.results
+            // test: getOee.data.results
         })
 
         // res.json(getstatus.data )

@@ -157,8 +157,8 @@ export default function MenuPage(props: { params: { site: string } }) {
     const data = items.map((production) => {
       // console.log(items);
       
-      let startTime = dayjs(production["Start"]).hour();
-      if (startTime > 7 && startTime < 20) {
+      let startTime =     production.First_time  ? dayjs(production["First_time"]).hour() :   dayjs(production["Start"]).hour();
+      if (startTime >= 7 && startTime < 20) {
         production.Shift = "Day";
       } else {
         production.Shift = "Night";

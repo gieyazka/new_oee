@@ -73,7 +73,7 @@ const RenderExportTable = ({
                           />
                         ) : (
                           //   "asdsad"
-                          <>{value}</>
+                          <> {value}</>
                         )
                       ) : (
                         <Skeleton />

@@ -242,14 +242,16 @@ const RenderTable = ({
   masterData,
   mcData,
   partList,
+  site,
 }: {
   machineName: Machine[];
   masterData: any;
   mcData: Machine[];
   partList: PartList[];
+  site: string;
 }) => {
-  const columns = React.useMemo<ColumnDef<any>[]>(
-    () => [
+  const columns = React.useMemo<ColumnDef<any>[]>(() => {
+    let column = [
       {
         header: () => <span>Status</span>,
         accessorFn: (row: Machine) => {
@@ -257,113 +259,145 @@ const RenderTable = ({
           return row.status;
         },
         id: "Status",
-        cell: (info) => {
+        cell: (info: { getValue: () => any }) => {
           return info.getValue();
         },
-        footer: (props) => props.column.id,
+        footer: (props: { column: { id: any } }) => props.column.id,
       },
       {
         header: () => <span>Line</span>,
-        accessorFn: (row) => <div>{row.line}</div>,
+        accessorFn: (row: {
+          line:
+            | string
+            | number
+            | boolean
+            | React.ReactElement<any, string | React.JSXElementConstructor<any>>
+            | React.ReactFragment
+            | React.ReactPortal
+            | null
+            | undefined;
+        }) => <div>{row.line}</div>,
         id: "Area",
-        cell: (info) => {
+        cell: (info: { getValue: () => any }) => {
           return info.getValue();
         },
-        footer: (props) => props.column.id,
+        footer: (props: { column: { id: any } }) => props.column.id,
       },
       {
         header: () => <span>Machine Code</span>,
-        accessorFn: (row) => <div>{row.line}</div>,
+        accessorFn: (row: {
+          line:
+            | string
+            | number
+            | boolean
+            | React.ReactElement<any, string | React.JSXElementConstructor<any>>
+            | React.ReactFragment
+            | React.ReactPortal
+            | null
+            | undefined;
+        }) => <div>{row.line}</div>,
         id: "Machine",
-        cell: (info) => {
+        cell: (info: { getValue: () => any }) => {
           return info.getValue();
         },
-        footer: (props) => props.column.id,
+        footer: (props: { column: { id: any } }) => props.column.id,
       },
       {
         header: () => <span>Part name</span>,
-        accessorFn: (row) => row.firstName,
+        accessorFn: (row: { firstName: any }) => row.firstName,
         id: "Part name",
-        cell: (info) => {
+        cell: (info: { getValue: () => any }) => {
           return info.getValue();
         },
-        footer: (props) => props.column.id,
+        footer: (props: { column: { id: any } }) => props.column.id,
       },
       {
         header: () => <span>Target</span>,
-        accessorFn: (row) => row.firstName,
+        accessorFn: (row: { firstName: any }) => row.firstName,
         id: "Target",
-        cell: (info) => {
+        cell: (info: { getValue: () => any }) => {
           return info.getValue();
         },
-        footer: (props) => props.column.id,
+        footer: (props: { column: { id: any } }) => props.column.id,
       },
       {
         header: () => <span>Plan</span>,
-        accessorFn: (row) => row.firstName,
+        accessorFn: (row: { firstName: any }) => row.firstName,
         id: "Plan",
-        cell: (info) => {
+        cell: (info: { getValue: () => any }) => {
           return info.getValue();
         },
-        footer: (props) => props.column.id,
+        footer: (props: { column: { id: any } }) => props.column.id,
       },
       {
         header: () => <span>Actual</span>,
-        accessorFn: (row) => row.firstName,
+        accessorFn: (row: { firstName: any }) => row.firstName,
         id: "Actual",
-        cell: (info) => {
+        cell: (info: { getValue: () => any }) => {
           return info.getValue();
         },
-        footer: (props) => props.column.id,
+        footer: (props: { column: { id: any } }) => props.column.id,
       },
       {
         header: () => <span>Start Time</span>,
-        accessorFn: (row) => row.firstName,
+        accessorFn: (row: { firstName: any }) => row.firstName,
         id: "Start",
-        cell: (info) => {
+        cell: (info: { getValue: () => any }) => {
           return info.getValue();
         },
-        footer: (props) => props.column.id,
+        footer: (props: { column: { id: any } }) => props.column.id,
       },
       {
         header: () => <span>Produce Time</span>,
-        accessorFn: (row) => row.firstName,
+        accessorFn: (row: { firstName: any }) => row.firstName,
         id: "Produce",
-        cell: (info) => {
+        cell: (info: { getValue: () => any }) => {
           return info.getValue();
         },
-        footer: (props) => props.column.id,
+        footer: (props: { column: { id: any } }) => props.column.id,
       },
       {
         header: () => <span>A</span>,
-        accessorFn: (row) => row.firstName,
+        accessorFn: (row: { firstName: any }) => row.firstName,
         id: "OEE",
-        cell: (info) => {
+        cell: (info: { getValue: () => any }) => {
           return info.getValue();
         },
-        footer: (props) => props.column.id,
+        footer: (props: { column: { id: any } }) => props.column.id,
       },
       {
         header: () => <span>P</span>,
-        accessorFn: (row) => row.firstName,
+        accessorFn: (row: { firstName: any }) => row.firstName,
         id: "OEE",
-        cell: (info) => {
+        cell: (info: { getValue: () => any }) => {
           return info.getValue();
         },
-        footer: (props) => props.column.id,
+        footer: (props: { column: { id: any } }) => props.column.id,
       },
       {
         header: () => <span>OEE</span>,
-        accessorFn: (row) => row.firstName,
+        accessorFn: (row: { firstName: any }) => row.firstName,
         id: "OEE",
-        cell: (info) => {
+        cell: (info: { getValue: () => any }) => {
           return info.getValue();
         },
-        footer: (props) => props.column.id,
+        footer: (props: { column: { id: any } }) => props.column.id,
       },
-    ],
-    []
-  );
+    ];
+    if (site === "AHP" || site === "ASP") {
+      let additionColumn: any = {
+        header: () => <span>Base</span>,
+        accessorFn: (row: { base: string }) => <div>{row.base}</div>,
+        id: "base",
+        cell: (info: { getValue: () => any }) => {
+          return info.getValue();
+        },
+        footer: (props: { column: { id: any } }) => props.column.id,
+      };
+      column.splice(3, 0, additionColumn);
+    }
+    return column;
+  }, []);
   const [{ pageIndex, pageSize }, setPagination] =
     React.useState<PaginationState>({
       pageIndex: 1,
@@ -375,7 +409,18 @@ const RenderTable = ({
     pageSize,
   };
   const [page, setPage] = React.useState({ totalPage: 0, currentPage: 1 });
+  const [dataState, setDataState] = React.useState<Machine[]>();
+  // mcData.slice(pageSize * (page.currentPage - 1), pageSize * page.currentPage)
   const defaultData = React.useMemo(() => [], []);
+  // useEffect(() => {
+  //   setDataState(
+  //     (prev) => mcData
+  //     // .slice(
+  //     //   pageSize * (page.currentPage - 1),
+  //     //   pageSize * page.currentPage
+  //     // )
+  //   );
+  // }, [mcData, page]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -387,44 +432,27 @@ const RenderTable = ({
         } else {
           currentPage = 1;
         }
-
         return { totalPage: totalPage, currentPage: currentPage };
       });
     }, 15000);
     return () => clearInterval(interval);
-  }, []);
-
-  // const dataQuery = useSWR(
-  //   ["data", fetchDataOptions],
-  //   () => {
-  //     const data = fetchApi(fetchDataOptions, mcData, false, page);
-
-  //     setPage((e) => data.currentPage);
-  //     return data;
-  //   },
-  //   // { keepPreviousData: true }
-  //   { keepPreviousData: true, refreshInterval: 20000 }
+  }, [mcData]);
+  // const pagination = React.useMemo(
+  //   () => ({
+  //     pageIndex,
+  //     pageSize,
+  //   }),
+  //   [pageIndex, pageSize]
   // );
-
-  const pagination = React.useMemo(
-    () => ({
-      pageIndex,
-      pageSize,
-    }),
-    [pageIndex, pageSize]
-  );
   // console.log(dataQuery.data);
-
   const table = useReactTable({
     // data: masterData ?? defaultData,
-    data:
-      mcData.slice(pageSize * (pageIndex - 1), pageSize * pageIndex) ??
-      defaultData,
+    data: defaultData,
     columns,
     pageCount: page.totalPage ?? -1,
-    state: {
-      pagination,
-    },
+    // state: {
+    //   pagination,
+    // },
     onPaginationChange: setPagination,
     getCoreRowModel: getCoreRowModel(),
     manualPagination: true,
@@ -442,12 +470,12 @@ const RenderTable = ({
         }}
       >
         <thead className=" h-10">
-          {table.getHeaderGroups().map((headerGroup) => (
+          {table.getHeaderGroups().map((headerGroup :any) => (
             <tr
               style={{ backgroundColor: "#0087DC", color: "white" }}
               key={headerGroup.id}
             >
-              {headerGroup.headers.map((header) => {
+              {headerGroup.headers.map((header : any) => {
                 // console.log(header);
 
                 return (
@@ -473,9 +501,10 @@ const RenderTable = ({
         </thead>
         <tbody className="text-center">
           {mcData
-            .slice(
-              pageSize * (page.currentPage - 1),
-              pageSize * page.currentPage
+            .filter(
+              (_, index) =>
+                index >= pageSize * (page.currentPage - 1) &&
+                index <= pageSize * page.currentPage
             )
             .map((machine: Machine, index) => {
               let statusBg = "";
@@ -519,18 +548,22 @@ const RenderTable = ({
                   className={`border-2 ${
                     index % 2 != 0 ? "bg-white" : "bg-gray-300"
                   }`}
-                  key={machine.id}
+                  key={`${index}`}
                 >
                   <td className="flex justify-center">
                     <div
                       className={`${statusBg} text-center  `}
                       style={{ minWidth: "75%", margin: "1px 0px 1px 0px" }}
                     >
+                      {/* {machine.id} */}
                       {getStringStatus(machine.status)}
                     </div>
                   </td>
                   <td className="">{machine.aera}</td>
                   <td>{machine.line}</td>
+                  {(site === "AHP" || site === "ASP") && (
+                    <td>B{machine.base}</td>
+                  )}
                   <td>{machine.part}</td>
                   <td>{machine.target}</td>
                   <td>{machine.plan}</td>
@@ -549,7 +582,6 @@ const RenderTable = ({
                     {Oee}
                     {typeof machine.oee === "number" && "%"}
                   </td>
-                  {/* <td>{machine.actual - machine.plan}</td> */}
                 </tr>
               );
             })}
@@ -559,12 +591,4 @@ const RenderTable = ({
   );
 };
 
-
-export {
-  OeeChart,
-  SumProduct,
-  MachineStatus,
-  HourChart,
-  RenderTable,
-
-};
+export { OeeChart, SumProduct, MachineStatus, HourChart, RenderTable };

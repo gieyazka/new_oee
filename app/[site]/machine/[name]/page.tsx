@@ -54,9 +54,9 @@ export default function Page(props: {
   const partList = usePartList(site);
 
   if (machineName.data !== undefined) {
-    for (const element of machineName.data.data) {
-      delete element.attributes.createdAt;
-      delete element.attributes.updatedAt;
+    for (const element of machineName.data) {
+      // delete element.attributes.createdAt;
+      // delete element.attributes.updatedAt;
       newMachine.push({
         id: element.id,
         ...element.attributes,

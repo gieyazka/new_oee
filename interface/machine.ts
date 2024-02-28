@@ -15,9 +15,24 @@ export interface Machine {
     availability: number,
     performance: number,
     start: string
+    Site?: string,
+    Aera?: string,
+    Line?: string,
+    Base?: string,
+
+}
+export interface Workday {
+    id: number,
+    date: { date: string, day: string }[],
+    aera: string,
+    line: string,
+    site :string,
+    dayShift: string,
+    nightShift: string,
+
 }
 export interface PartList {
-    id : number ;
+    id: number;
     Alias_Name: string;
     CT_Oracle: string;
     Machine_Code: string;

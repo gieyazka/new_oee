@@ -24,7 +24,6 @@ export default async function handler(
         };
         let getData = await axios(data);
         // let getPlan =            await axios(data);
-
         let queryStart = `SELECT last("time_start") as ftime  FROM "Performance" WHERE ("Area" = '${(area)}') AND  ("Site" = '${(site as string)}') AND  ("Line" = '${(line as string)}') AND actual_rate = 0 `;
         let dataStart = {
             method: "post",
@@ -51,7 +50,7 @@ export default async function handler(
                 plan = "stopped"
             } else if (statusPlan === 4) {
                 plan = "plan_downtime"
-            }else { 
+            } else {
                 plan = "No data"
             }
         }

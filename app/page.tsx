@@ -4,7 +4,6 @@ import { Inter } from '@next/font/google'
 import styles from '../styles/Home.module.css'
 
 const inter = Inter({ subsets: ['latin'] })
-const { app, BrowserWindow } = require('electron')
 export default function Home() {
   return (
     <>

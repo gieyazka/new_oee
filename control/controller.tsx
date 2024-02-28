@@ -25,9 +25,12 @@ const useHost = () => {
 
 const getServer = (site: string) => {
   site = site.toUpperCase();
-  if (site === "ASP") {
+  if (site === "AHP") {
+    return "http://10.10.22.209:1337";
+  } else if (site === "ASP") {
     return "http://10.40.10.209:1337";
   }
+  //AA
   return "http://10.20.10.209:1337";
 };
 
@@ -133,6 +136,13 @@ const getAvgPercent = (sumPercentage: number, size: number, noData: number) => {
   return Math.round(sumPercentage / (size - noData));
 };
 const getInfluxServer = (site: String) => {
+  if (site === "AHP") {
+    return {
+      server: "http://10.10.22.209:8086",
+      token:
+        "XNLHRzo-89EWZ3iaxIadRtpzGPBcbr2oLDihiqiQDkudZrMh04dvN7wzqqGLWbry2QGqpEfqL9k_OYeEwLyX4Q==",
+    };
+  }
   if (site === "AA") {
     return {
       server: "http://10.20.10.209:8086",
@@ -168,36 +178,35 @@ const getMinutebySec = (sec: number) => {
 };
 
 const checkHeaderKey = (key: string) => {
-  if(key === "P_Plan"){
-    return "Plan"
+  if (key === "P_Plan") {
+    return "Plan";
   }
-  if(key === "Plan_Target"){
-    return "Target"
+  if (key === "Plan_Target") {
+    return "Target";
   }
-  if(key === "PartName_Oracle"){
-    return "Part Name"
+  if (key === "PartName_Oracle") {
+    return "Part Name";
   }
-  if(key === "CycleTime"){
-    return "CT(s)"
+  if (key === "CycleTime") {
+    return "CT(s)";
   }
-  if(key === "Production_Time"){
-    return "Prod.Time(m)"
+  if (key === "Production_Time") {
+    return "Prod.Time(m)";
   }
-  if(key === "Plan_downtime"){
-    return "P/D(m)"
+  if (key === "Plan_downtime") {
+    return "P/D(m)";
   }
-  if(key === "Running_Utilization"){
-    return "Running(m)"
+  if (key === "Running_Utilization") {
+    return "Running(m)";
   }
-  if(key === "Idle_Utilization"){
-    return "Idle(m)"
+  if (key === "Idle_Utilization") {
+    return "Idle(m)";
   }
-  if(key === "Stop_Utilization"){
-    return "Stop(m)"
+  if (key === "Stop_Utilization") {
+    return "Stop(m)";
   }
   return key;
 };
-
 
 const getStringStatus = (status: string) => {
   if (status === "execute") {
@@ -213,12 +222,12 @@ const getStringStatus = (status: string) => {
   }
 };
 
-
 export {
   useSite,
   checkHeaderKey,
   getHours,
-  fetchApi,getStringStatus,
+  fetchApi,
+  getStringStatus,
   useHost,
   getHoursTime,
   getStartTime,

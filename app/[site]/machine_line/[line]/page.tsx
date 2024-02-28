@@ -47,27 +47,23 @@ export default function Page(props: {
   const partList = usePartList(site);
 
   if (machineName.data !== undefined) {
-    for (const element of machineName.data.data) {
-      delete element.attributes.createdAt;
-      delete element.attributes.updatedAt;
-      newMachine.push({
-        id: element.id,
-        ...element.attributes,
-      });
+    for (const element of machineName.data) {
+      newMachine.push(element);
     }
-    newMachine = newMachine.filter(
-      (d) =>
-        d.line !== "TTP" &&
-        d.line !== "SBK" &&
-        d.line !== "SSN" &&
-        d.line !== "P1" &&
-        d.line !== "P5" &&
-        d.line !== "P6" &&
-        d.line !== "P7" &&
-        d.line !== "P8" &&
-        d.line !== "P9"
-    );
+    // newMachine = newMachine.filter(
+    //   (d) =>
+    //     // d.line !== "TTP" &&
+    //     // d.line !== "SBK" &&
+    //     // d.line !== "SSN" &&
+    //     // d.line !== "P1" &&
+    //     // d.line !== "P5" &&
+    //     // d.line !== "P6" &&
+    //     // d.line !== "P7" &&
+    //     // d.line !== "P8" &&
+    //     // d.line !== "P9"
+    // );
   }
+  console.log("", newMachine);
   let newPartList: PartList[] = [];
   if (partList.data !== undefined) {
     for (const element of partList.data.data) {
