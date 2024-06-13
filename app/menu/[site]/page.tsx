@@ -206,7 +206,8 @@ export default function MenuPage(props: { params: { site: string } }) {
   React.useEffect(() => {
     setState(filterData());
   }, [searchData, filter]);
-
+console.log('filter',filter)
+console.log('searchData',searchData)
   return (
     <div
       className=" w-screen h-screen p-4 "

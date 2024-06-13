@@ -47,9 +47,9 @@ const useAllmc = (url: string[]) => {
   });
 };
 
-const useWorkDay = (site: string, area: string,month : string) => {
-  let date = dayjs(month,"MM")
-  let startMonth =(date.startOf("month").format('YYYYMMDD'));
+const useWorkDay = (site: string, area: string, month: string) => {
+  let date = dayjs(month, "MM")
+  let startMonth = (date.startOf("month").format('YYYYMMDD'));
   let endMonth = (date.endOf("month").format('YYYYMMDD'));
   const server = getServer(site);
   let newMachine = [];
@@ -149,7 +149,7 @@ const updateWorkDay = async (site: string, state: any, leaveDay: any) => {
         }
       }
       let checkType = d.type;
-      if(checkType === "add"){
+      if (checkType === "add") {
         delete d.day;
         delete d.type;
 
@@ -177,7 +177,7 @@ const updateWorkDay = async (site: string, state: any, leaveDay: any) => {
         }
       }
       let checkType = d.type;
-      if(checkType === "edit"){
+      if (checkType === "edit") {
         delete d.day;
         delete d.type;
 
@@ -280,7 +280,7 @@ const useMachineName = (site: string) => {
         ...element.attributes,
       });
     }
-
+    console.log('newMachine', newMachine)
     if (site === "AHP") {
       for (const [index, element] of newMachine.entries()) {
         // if (element.Base === "1") {
@@ -358,7 +358,7 @@ const fetchProduction_Time = async (
   const server = getServer(site);
 
   const data = await fetch(
-    `${server}/api/production-lines?filters[plant][$eq]=${site}&filters[Start][$gte]=${startTime.toISOString()}&filters[Start][$lte]=${endTime.toISOString()}`
+    `${server}/api/production-lines?filters[plant][$eq]=${site}&filters[Start][$gte]=${startTime.toISOString()}&filters[Start][$lte]=${endTime.toISOString()}&limit_-1`
   );
   return data.json();
 };

@@ -62,18 +62,18 @@ export default function Page(props: {
         ...element.attributes,
       });
     }
-    newMachine = newMachine.filter(
-      (d) =>
-        d.line !== "TTP" &&
-        d.line !== "SBK" &&
-        d.line !== "SSN" &&
-        d.line !== "P1" &&
-        d.line !== "P5" &&
-        d.line !== "P6" &&
-        d.line !== "P7" &&
-        d.line !== "P8" &&
-        d.line !== "P9"
-    );
+    // newMachine = newMachine.filter(
+    //   (d) =>
+    //     d.line !== "TTP" &&
+    //     d.line !== "SBK" &&
+    //     d.line !== "SSN" &&
+    //     d.line !== "P1" &&
+    //     d.line !== "P5" &&
+    //     d.line !== "P6" &&
+    //     d.line !== "P7" &&
+    //     d.line !== "P8" &&
+    //     d.line !== "P9"
+    // );
   }
   let newPartList: PartList[] = [];
   if (partList.data !== undefined) {
